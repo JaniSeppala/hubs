@@ -11,7 +11,8 @@ export const AVAILABLE_LOCALES = {
   ko: "한국어",
   de: "Deutsch",
   "zh-tw": "繁體中文",
-  it: "Italiano"
+  it: "Italiano",
+  fi: "Suomi"
 };
 
 // Map from alternative primary language tags to those we support
