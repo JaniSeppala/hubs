@@ -664,7 +664,7 @@
   "tips.lobby": "Olet aulassa. Muut eivät näe eikä kuule sinua.",
   "tips.menu": "<p>Voit käynnistää esittelykierroksen {menu} valikosta</p>",
   "tips.mobile.defense": "<p>Jos joku avatar on mielestäsi häiritsevä</p><p>, liian kovaääninen tai liian hiljainen,</p><ol><li>napauta avataria kahdella sormella avataksesi avatar-valikon,</li><li>sitten napauta {hide} painiketta tai äänenvoimakkuuspainikkeita heidän avatarinsa kohdalla.</li></ol>",
-  "tips.mobile.invite": "<p>Huoneessa ei ole vielä muita.</p><p>Napauta {invite} paniketta vasemmassa al       areunassa tai valitse Kutsu {menu} valikossa kutsuaksesi muita huoneeseen.</p>",
+  "tips.mobile.invite": "<p>Huoneessa ei ole vielä muita.</p><p>Napauta {invite} paniketta vasemmassa alareunassa tai valitse Kutsu {menu} valikossa kutsuaksesi muita huoneeseen.</p>",
   "tips.mobile.locomotion": "<p>Liiku huoneessa levitys tai nipistyseleillä, tai käyttäen vasemmanpuoleista ruudulla näkyvää joystickiä.</p>",
   "tips.mobile.turning": "<p>Liikuta sormea ruudulla tai käytä oikeanpuoleista ruudulla näkyvää joystickiä katsellaksesi ympärillesi.</p>",
   "tips.standalone.defense": "<p>Jos joku avatar on mielestäsi häiritsevä</p><p>, liian kovaääninen tai liian hiljainen,</p><ol><li>pidä pohjassa ohjaimen {A} tai {X} paniketta avataksesi avatar-valikon,</li><li>sitten napauta {hide} painiketta tai äänenvoimakkuuspainikkeita heidän avatarinsa kohdalla.</li></ol>",
