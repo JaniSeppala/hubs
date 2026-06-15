@@ -3,6 +3,7 @@ import nextTick from "./utils/next-tick";
 import { hackyMobileSafariTest } from "./utils/detect-touchscreen";
 import { SignInMessages } from "./react-components/auth/SignInModal";
 import { createNetworkedEntity } from "./utils/create-networked-entity";
+import { trackEvent } from "./telemetry";
 
 const isBotMode = qsTruthy("bot");
 const isMobile = AFRAME.utils.device.isMobile();
@@ -134,6 +135,13 @@ export default class SceneEntryManager {
     this.scene.addState("entered");
 
     APP.mediaDevicesManager.micEnabled = !muteOnEntry;
+
+    // Telemetry
+    if (APP.hub && APP.hub.name) {
+      trackEvent("Room Event", "Enter Room", `${APP.hub.name}`);
+    } else {
+      trackEvent("Room Event", "Enter Room", "N/A");
+    }
   };
 
   whenSceneLoaded = callback => {
@@ -162,6 +170,13 @@ export default class SceneEntryManager {
       this.scene.renderer.setAnimationLoop(null); // Stop animation loop, TODO A-Frame should do this
     }
     this.scene.parentNode.removeChild(this.scene);
+
+    // Telemetry
+    if (APP.hub && APP.hub.name) {
+      trackEvent("Room Event", "Exit Room", `${APP.hub.name}`);
+    } else {
+      trackEvent("Room Event", "Exit Room", "N/A");
+    }
   };
 
   _setupPlayerRig = () => {
