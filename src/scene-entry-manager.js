@@ -3,6 +3,7 @@ import nextTick from "./utils/next-tick";
 import { hackyMobileSafariTest } from "./utils/detect-touchscreen";
 import { SignInMessages } from "./react-components/auth/SignInModal";
 import { createNetworkedEntity } from "./utils/create-networked-entity";
+import { trackEvent } from "./telemetry";
 
 const isBotMode = qsTruthy("bot");
 const isMobile = AFRAME.utils.device.isMobile();
@@ -134,6 +135,13 @@ export default class SceneEntryManager {
     this.scene.addState("entered");
 
     APP.mediaDevicesManager.micEnabled = !muteOnEntry;
+
+    // Telemetry
+    if (APP.hub && APP.hub.name) {
+      trackEvent("Room Event", "Enter Room", `${APP.hub.name}`);
+    } else {
+      trackEvent("Room Event", "Enter Room", "N/A");
+    }
   };
 
   whenSceneLoaded = callback => {
@@ -162,6 +170,13 @@ export default class SceneEntryManager {
       this.scene.renderer.setAnimationLoop(null); // Stop animation loop, TODO A-Frame should do this
     }
     this.scene.parentNode.removeChild(this.scene);
+
+    // Telemetry
+    if (APP.hub && APP.hub.name) {
+      trackEvent("Room Event", "Exit Room", `${APP.hub.name}`);
+    } else {
+      trackEvent("Room Event", "Exit Room", "N/A");
+    }
   };
 
   _setupPlayerRig = () => {
@@ -337,7 +352,7 @@ export default class SceneEntryManager {
           // Sometimes dataTransfer text contains a valid URL, so try for that.
           try {
             url = new URL(e.dataTransfer.getData("text")).href;
-          } catch (e) {
+          } catch {
             // Nope, not this time.
           }
         }
@@ -541,8 +556,8 @@ export default class SceneEntryManager {
     const audioStream = audioEl.captureStream
       ? audioEl.captureStream()
       : audioEl.mozCaptureStream
-      ? audioEl.mozCaptureStream()
-      : null;
+        ? audioEl.mozCaptureStream()
+        : null;
 
     if (audioStream) {
       let audioVolume = Number(qs.get("audio_volume") || "1.0");
