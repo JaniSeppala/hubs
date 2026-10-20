@@ -35,7 +35,7 @@ import { ImportContent } from "./react-components/import-content";
 import { AutoEndSessionDialog } from "./react-components/auto-end-session-dialog";
 import registerTelemetry from "hubs/src/telemetry";
 import { UnauthorizedPage } from "./react-components/unauthorized";
-import { store } from "hubs/src/utils/store-instance";
+import { getStore } from "hubs/src/utils/store-instance";
 import { HiddenAppBar, AdminSidebar } from "./react-components/admin-chrome";
 import { adminTheme } from "./admin-theme";
 
@@ -192,7 +192,7 @@ const mountUI = async (retPhxChannel, customRoutes, layout) => {
 
   let permsTokenRefreshInterval;
 
-  const store = APP.store;
+  const store = getStore();
   if (configs.POSTGREST_SERVER) {
     dataProvider = postgrestClient(configs.POSTGREST_SERVER);
     authProvider = postgrestAuthenticatior.createAuthProvider(retPhxChannel);
@@ -234,7 +234,7 @@ const mountUI = async (retPhxChannel, customRoutes, layout) => {
 document.addEventListener("DOMContentLoaded", async () => {
   const socket = await connectToReticulum();
 
-  const store = APP.store;
+  const store = getStore();
   if (store.state && store.state.credentials && store.state.credentials.token) {
     setItaAuthToken(store.state.credentials.token);
     try {
